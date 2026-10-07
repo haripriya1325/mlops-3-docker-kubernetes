@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-ml-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: student-ml
+  template:
+    metadata:
+      labels:
+        app: student-ml
+    spec:
+      containers:
+        - name: student-ml-container
+          image: student-mlops:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
